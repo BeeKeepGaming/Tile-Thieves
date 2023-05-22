@@ -1,0 +1,6 @@
+Player still need to be able to place his piece.
+
+The hole cell needs to be spawned in.
+
+Score System
+
