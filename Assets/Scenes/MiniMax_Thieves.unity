@@ -1455,11 +1455,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayer: 0
+  playerVAi: 0
   currentAction: 0
   turn:
   - {fileID: 830667155}
   - {fileID: 1137582495}
   endGameScene: 0
+  playingAgainstAi: 0
 --- !u!1 &830667153
 GameObject:
   m_ObjectHideFlags: 0

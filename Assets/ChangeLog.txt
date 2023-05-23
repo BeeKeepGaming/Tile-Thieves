@@ -1,0 +1,9 @@
+Added MinMax Script.
+Working On Turn_Manager to be able to handle the Ai's turn.
+
+MinMax:
+- Have access to a copy of the board sells
+- Have access to a copy of the zones.
+
+Turnmanager calls runminmax in MinMax script
+Turnmanager now knows when to swap between pvp and pvai.

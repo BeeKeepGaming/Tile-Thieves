@@ -11,31 +11,56 @@ public class Turn_Manager : MonoBehaviour
     {
         player1, player2
     }
+    public enum PlayerVAi
+    {
+        player, ai
+    }
     public enum Actions
     {
         add, remove 
     }
 
     public Players currentPlayer;
+    public PlayerVAi playerVsAi;
     public Actions currentAction;
     public static Turn_Manager instance;
     [SerializeField] List<TMP_Text> turn;
     [SerializeField] int endGameScene;
+    [SerializeField] bool playingAgainstAi;
 
     private void Awake()
     {
         instance = this;
-        currentPlayer = (Players)Random.Range(0, 2);
-        if(currentPlayer == Players.player1)
+        if(playingAgainstAi == false)
         {
-            turn[0].text = currentAction.ToString();
-            turn[1].text = " ";
+            currentPlayer = (Players)Random.Range(0, 2);
+            if(currentPlayer == Players.player1)
+            {
+                turn[0].text = currentAction.ToString();
+                turn[1].text = " ";
+            }
+            else
+            {
+                turn[1].text = currentAction.ToString();
+                turn[0].text = " ";
+            }
         }
         else
         {
-            turn[1].text = currentAction.ToString();
-            turn[0].text = " ";
+            playerVsAi = (PlayerVAi)Random.Range(0, 2);
+            if (playerVsAi == PlayerVAi.player)
+            {
+                turn[0].text = currentAction.ToString();
+                turn[1].text = " ";
+            }
+            else
+            {
+                MinMax.instance.RunMinMax();
+                turn[1].text = currentAction.ToString();
+                turn[0].text = " ";
+            }
         }
+
     }
 
     public void NextTurn()
@@ -44,61 +69,123 @@ public class Turn_Manager : MonoBehaviour
         {
             Menu_Manager.instance.ChangeScene(endGameScene);
         }
-
-        for(int i = 0; i < Game_Core.instance.zones.Count; i++)
+        if(playingAgainstAi == false)
         {
-            if (Game_Core.instance.zones[i].GetBonusMove(Zone.Actions.remove) == Zone.Actions.remove)
+            for(int i = 0; i < Game_Core.instance.zones.Count; i++)
             {
-                currentAction = Actions.remove;
-                if (currentPlayer == Players.player1)
-                { 
-                    turn[0].text = currentAction.ToString();
-                    turn[1].text = " ";
-                }
-                else
+                if (Game_Core.instance.zones[i].GetBonusMove(Zone.Actions.remove) == Zone.Actions.remove)
                 {
-                    turn[1].text = currentAction.ToString();
-                    turn[0].text = " ";
+                    currentAction = Actions.remove;
+                    if (currentPlayer == Players.player1)
+                    { 
+                        turn[0].text = currentAction.ToString();
+                        turn[1].text = " ";
+                    }
+                    else
+                    {
+                        turn[1].text = currentAction.ToString();
+                        turn[0].text = " ";
+                    }
+                    if (GameStateQuit())
+                    {
+                        Menu_Manager.instance.ChangeScene(endGameScene);
+                    }
+                    return;
                 }
-                if (GameStateQuit())
-                {
-                    Menu_Manager.instance.ChangeScene(endGameScene);
-                }
-                return;
             }
-        }
 
-        for (int i = 0; i < Game_Core.instance.zones.Count; i++)
-        {
-            if (Game_Core.instance.zones[i].GetBonusMove(Zone.Actions.add) == Zone.Actions.add)
+            for (int i = 0; i < Game_Core.instance.zones.Count; i++)
             {
-                currentAction = Actions.add;
-                if (currentPlayer == Players.player1)
+                if (Game_Core.instance.zones[i].GetBonusMove(Zone.Actions.add) == Zone.Actions.add)
                 {
-                    turn[0].text = currentAction.ToString();
-                    turn[1].text = " ";
+                    currentAction = Actions.add;
+                    if (currentPlayer == Players.player1)
+                    {
+                        turn[0].text = currentAction.ToString();
+                        turn[1].text = " ";
+                    }
+                    else
+                    {
+                        turn[1].text = currentAction.ToString();
+                        turn[0].text = " ";
+                    }
+                    return;
                 }
-                else
-                {
-                    turn[1].text = currentAction.ToString();
-                    turn[0].text = " ";
-                }
-                return;
             }
-        }
 
-        currentAction = Actions.add;
-        if(currentPlayer == Players.player1)
-        {
-            currentPlayer = Players.player2;
-            turn[1].text = currentAction.ToString();
-            turn[0].text = " ";
+            currentAction = Actions.add;
+            if(currentPlayer == Players.player1)
+            {
+                currentPlayer = Players.player2;
+                turn[1].text = currentAction.ToString();
+                turn[0].text = " ";
+            }
+            else
+            {
+                currentPlayer = Players.player1;
+                turn[0].text = currentAction.ToString();
+                turn[1].text = " ";
+            }
         }
         else
         {
-            currentPlayer = Players.player1;
-            turn[0].text = currentAction.ToString();
-            turn[1].text = " ";
+            for (int i = 0; i < Game_Core.instance.zones.Count; i++)
+            {
+                if (Game_Core.instance.zones[i].GetBonusMove(Zone.Actions.remove) == Zone.Actions.remove)
+                {
+                    currentAction = Actions.remove;
+                    if (playerVsAi == PlayerVAi.player)
+                    {
+                        turn[0].text = currentAction.ToString();
+                        turn[1].text = " ";
+                    }
+                    else
+                    {
+                        MinMax.instance.RunMinMax();
+                        turn[1].text = currentAction.ToString();
+                        turn[0].text = " ";
+                    }
+                    if (GameStateQuit())
+                    {
+                        Menu_Manager.instance.ChangeScene(endGameScene);
+                    }
+                    return;
+                }
+            }
+
+            for (int i = 0; i < Game_Core.instance.zones.Count; i++)
+            {
+                if (Game_Core.instance.zones[i].GetBonusMove(Zone.Actions.add) == Zone.Actions.add)
+                {
+                    currentAction = Actions.add;
+                    if (playerVsAi == PlayerVAi.player)
+                    {
+                        turn[0].text = currentAction.ToString();
+                        turn[1].text = " ";
+                    }
+                    else
+                    {
+                        MinMax.instance.RunMinMax();
+                        turn[1].text = currentAction.ToString();
+                        turn[0].text = " ";
+                    }
+                    return;
+                }
+            }
+
+            currentAction = Actions.add;
+            if (playerVsAi == PlayerVAi.player)
+            {
+                playerVsAi = PlayerVAi.ai;
+                turn[1].text = currentAction.ToString();
+                turn[0].text = " ";
+            }
+            else
+            {
+                playerVsAi = PlayerVAi.player;
+                turn[0].text = currentAction.ToString();
+                turn[1].text = " ";
+            }
         }
     }
 
