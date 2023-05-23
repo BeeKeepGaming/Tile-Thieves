@@ -12,10 +12,11 @@ public class Game_Core : MonoBehaviour
     public List<Zone> zones = new List<Zone>();
     [SerializeField] private GameObject cellBGPrefab;
     [SerializeField] private GameObject cellPPrefab;
+    [SerializeField] private bool randomMap;
 
     [SerializeField] private Transform spawnerPos;
     [SerializeField] private int boardSize = 6; //Posibly in options Menu
-    //[SerializeField] private int boardBlockerC = 1;
+    [SerializeField] private int boardBlockerC = 1;
     [SerializeField] private float xOffSet;
     [SerializeField] private float yOffSet;
 
@@ -49,28 +50,31 @@ public class Game_Core : MonoBehaviour
 
     private void BlockSpawner()
     {
-        /*Random Block Cells
-        int randomNum;
-        for (int i = 0; i < boardBlockerC; i++)
+        if (randomMap == true)
         {
-            randomNum = UnityEngine.Random.Range(0, boardCells.Count);
+            int randomNum;
+            for (int i = 0; i < boardBlockerC; i++)
+            {
+                randomNum = UnityEngine.Random.Range(0, boardCells.Count);
 
-            if(boardCells[randomNum].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
-            {
-                boardCells[randomNum].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
-            }
-            else
-            {
-                boardCells[randomNum].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
-                i--;
+                if (boardCells[randomNum].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
+                {
+                    boardCells[randomNum].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
+                }
+                else
+                {
+                    boardCells[randomNum].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
+                    i--;
+                }
             }
         }
-        */
-
-        boardCells[7].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
-        boardCells[10].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
-        boardCells[25].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
-        boardCells[28].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
+        else
+        {
+            boardCells[7].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
+            boardCells[10].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
+            boardCells[25].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
+            boardCells[28].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
+        }        
     }
 
     private void ZoneGenerator()

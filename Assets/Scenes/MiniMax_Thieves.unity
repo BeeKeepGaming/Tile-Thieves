@@ -2488,8 +2488,10 @@ MonoBehaviour:
   boardCells: []
   cellBGPrefab: {fileID: 2712582034051934815, guid: eec06875003b2e146ae77acfc7073813, type: 3}
   cellPPrefab: {fileID: 9052860320668114300, guid: 04a1962d1353b97488cb5c3c3ddaedb5, type: 3}
+  randomMap: 0
   spawnerPos: {fileID: 1763130265}
   boardSize: 6
+  boardBlockerC: 4
   xOffSet: 1.3
   yOffSet: 1.3
 --- !u!224 &1632762058
