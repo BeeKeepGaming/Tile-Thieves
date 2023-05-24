@@ -7,3 +7,5 @@ MinMax:
 
 Turnmanager calls runminmax in MinMax script
 Turnmanager now knows when to swap between pvp and pvai.
+
+Piece manager now Accepts both the player input and ai input.

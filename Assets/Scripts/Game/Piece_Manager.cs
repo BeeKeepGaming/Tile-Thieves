@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.iOS;
 using UnityEngine.UI;
 
 public class Piece_Manager : MonoBehaviour
@@ -35,9 +38,25 @@ public class Piece_Manager : MonoBehaviour
 
     private void Click(InputAction.CallbackContext context)
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        RunMove();
+    }
 
-        hit = Physics2D.Raycast(mousePos, -Vector2.up, distance, cell);
+    public void RunMove(GameObject aiMove = null) 
+    {
+        GameObject thisMove;
+        if (aiMove == null)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+            hit = Physics2D.Raycast(mousePos, -Vector2.up, distance, cell);
+            thisMove = hit.collider.GameObject();
+        }
+        else
+        {
+            //hit.collider = aiMove.GetComponent<Collider>();
+            //aiMove.GetComponent<Sprite_Manager>().SwapSprite()
+            thisMove = aiMove;
+        }        
 
         if (!Menu_Manager.gameIsPaused)
         {
@@ -47,11 +66,13 @@ public class Piece_Manager : MonoBehaviour
                 {
                     if (Turn_Manager.instance.currentPlayer == Turn_Manager.Players.player1)
                     {
-                        hit.collider.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player1);
+                        //hit.collider.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player1);
+                        thisMove.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player1);
                     }
                     else
                     {
-                        hit.collider.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player2);
+                        //hit.collider.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player2);
+                        thisMove.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player2);
                     }
                 }
                 else
@@ -77,7 +98,9 @@ public class Piece_Manager : MonoBehaviour
             CalcScore();
             Turn_Manager.instance.NextTurn();
         }        
-    }   
+    }
+
+
 
     private void CalcScore()
     {
