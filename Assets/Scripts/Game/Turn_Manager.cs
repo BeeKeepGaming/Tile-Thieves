@@ -50,12 +50,12 @@ public class Turn_Manager : MonoBehaviour
             playerVsAi = (PlayerVAi)Random.Range(0, 2);
             if (playerVsAi == PlayerVAi.player)
             {
-                turn[0].text = currentAction.ToString();
+                turn[0].text = currentAction.ToString(); 
                 turn[1].text = " ";
             }
             else
             {
-                MinMax.instance.RunMinMax();
+                MinMaxBrain.instance.RunMinMax();
                 turn[1].text = currentAction.ToString();
                 turn[0].text = " ";
             }
@@ -141,7 +141,7 @@ public class Turn_Manager : MonoBehaviour
                     }
                     else
                     {
-                        MinMax.instance.RunMinMax();
+                        MinMaxBrain.instance.RunMinMax();
                         turn[1].text = currentAction.ToString();
                         turn[0].text = " ";
                     }
@@ -165,7 +165,7 @@ public class Turn_Manager : MonoBehaviour
                     }
                     else
                     {
-                        MinMax.instance.RunMinMax();
+                        MinMaxBrain.instance.RunMinMax();
                         turn[1].text = currentAction.ToString();
                         turn[0].text = " ";
                     }
