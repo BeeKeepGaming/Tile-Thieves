@@ -27,19 +27,27 @@ public class MinMaxBrain : MonoBehaviour
 
         for (int i = 0; i < board.Count; i++)
         {
-            //Get block Values
-            float score = MinMax();
-
-            if(score < bestScore)
+            if (board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
             {
-                bestScore = score;
-                tempspot = board[i].transform;
+                board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
+                float score = MinMax(board,0,false);
+                board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.empty;
+
+                if (score < bestScore)
+                {
+                    bestScore = score;
+                    tempspot = board[i].transform;
+                }
             }
         }
+        //Minmax Clicks Here
     }
 
-    private float MinMax()
+    private float MinMax(List<GameObject> minMaxboard, int depth, bool isMaximizing)
     {
+        //check the Score of the player
+        //check the score of the ai
+        //compare the scores
         return 0;
     }
 }
