@@ -17,10 +17,13 @@ public class Piece_Manager : MonoBehaviour
     private float distance = 10f;
     [SerializeField] private LayerMask cell;
     [SerializeField] List<TMP_Text> scores;
+    public static Piece_Manager instance;
+    Sprite_Manager.spriteType winningPlayer;
 
     private void Awake()
     {
-        inputAction = new Player_Controller();        
+        inputAction = new Player_Controller();
+        instance = this;
     }
 
     private void OnEnable()
@@ -39,17 +42,22 @@ public class Piece_Manager : MonoBehaviour
     private void Click(InputAction.CallbackContext context)
     {
         RunMove();
+        MinMaxBrain.instance.RunMinMax();
     }
 
-    public void RunMove(GameObject aiMove = null) 
+    public void RunMove(Transform aiMove = null) 
     {
-        GameObject thisMove;
+        Transform thisMove;
         if (aiMove == null)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
             hit = Physics2D.Raycast(mousePos, -Vector2.up, distance, cell);
-            thisMove = hit.collider.GameObject();
+            if (hit.collider is null)
+            {
+                return;
+            }
+            thisMove = hit.collider.GameObject().transform;
         }
         else
         {
@@ -100,8 +108,6 @@ public class Piece_Manager : MonoBehaviour
         }        
     }
 
-
-
     private void CalcScore()
     {
         int player1 = 0;
@@ -112,13 +118,25 @@ public class Piece_Manager : MonoBehaviour
             if (Game_Core.instance.boardCells[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1)
             {
                 player1++;
+                SetWinningPlayer(Sprite_Manager.spriteType.player1);
             }
             else if (Game_Core.instance.boardCells[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player2)
             {
                 player2++;
+                SetWinningPlayer(Sprite_Manager.spriteType.player2);
             }
         }
         scores[0].text = player1.ToString();
         scores[1].text = player2.ToString();
+    }
+
+    private void SetWinningPlayer(Sprite_Manager.spriteType player)
+    {
+        winningPlayer = player;
+    }
+
+    private Sprite_Manager.spriteType GetWinner()
+    {
+        return winningPlayer;
     }
 }

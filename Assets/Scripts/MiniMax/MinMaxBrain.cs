@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Playables;
 using UnityEngine;
 
 public class MinMaxBrain : MonoBehaviour
@@ -8,6 +9,7 @@ public class MinMaxBrain : MonoBehaviour
 
     private List<GameObject> board;
     private List<Zone> zones;
+    [SerializeField] int maxDepth;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class MinMaxBrain : MonoBehaviour
 
     public void RunMinMax()
     {
+        float score = 0;
         Transform tempspot = null;
         float bestScore = -Mathf.Infinity;
 
@@ -30,7 +33,7 @@ public class MinMaxBrain : MonoBehaviour
             if (board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
             {
                 board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
-                float score = MinMax(board,0,false);
+                score = MinMax(board[i],0,false);
                 board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.empty;
 
                 if (score < bestScore)
@@ -40,14 +43,37 @@ public class MinMaxBrain : MonoBehaviour
                 }
             }
         }
-        //Minmax Clicks Here
+        Piece_Manager.instance.RunMove(tempspot);
     }
 
-    private float MinMax(List<GameObject> minMaxboard, int depth, bool isMaximizing)
+    private float MinMax(GameObject minMaxboard, int depth, bool MaximizingPlayer)
     {
-        //check the Score of the player
-        //check the score of the ai
-        //compare the scores
-        return 0;
+        float score = 0;
+        if(depth > maxDepth)
+        {
+            return 0;
+        }
+
+        if (MaximizingPlayer)
+        {
+            float maxScore = -Mathf.Infinity;
+            for(int i  = 0; i < board.Count; ++i)
+            {
+                //
+                score = MinMax(minMaxboard, depth - 1, false);
+                maxScore = Mathf.Max(maxScore, score);                
+            }
+            return maxScore;
+        }
+        else
+        {
+            float minScore = Mathf.Infinity;
+            for(int i = 0;i < board.Count; ++i)
+            {
+                score = MinMax(minMaxboard,depth - 1, true);
+                minScore = Mathf.Min(minScore, score);
+            }
+            return minScore;
+        }
     }
 }
