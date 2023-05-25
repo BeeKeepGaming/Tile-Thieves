@@ -7,7 +7,7 @@ public class MinMaxBrain : MonoBehaviour
 {
     public static MinMaxBrain instance;
 
-    private List<GameObject> board;
+    [SerializeField] private List<GameObject> board;
     private List<Zone> zones;
     [SerializeField] int maxDepth;
 
