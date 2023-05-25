@@ -59,8 +59,9 @@ public class MinMaxBrain : MonoBehaviour
             float maxScore = -Mathf.Infinity;
             for(int i  = 0; i < board.Count; ++i)
             {
-                //
+                board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
                 score = MinMax(minMaxboard, depth - 1, false);
+                board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.empty;
                 maxScore = Mathf.Max(maxScore, score);                
             }
             return maxScore;
@@ -70,7 +71,9 @@ public class MinMaxBrain : MonoBehaviour
             float minScore = Mathf.Infinity;
             for(int i = 0;i < board.Count; ++i)
             {
+                board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player1;
                 score = MinMax(minMaxboard,depth - 1, true);
+                board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.empty;
                 minScore = Mathf.Min(minScore, score);
             }
             return minScore;
