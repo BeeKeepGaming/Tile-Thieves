@@ -53,7 +53,7 @@ public class MinMaxBrain : MonoBehaviour
         float score = 0;
         if(depth > maxDepth)
         {
-            float utilScore = Utility(Turn_Manager.instance.currentPlayer);
+            float utilScore = Utility();
             
             return utilScore;
         }
@@ -67,7 +67,7 @@ public class MinMaxBrain : MonoBehaviour
                 {
                     board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
                     //Add Remove Check
-                    score = MinMax(minMaxboard, depth - 1, false);
+                    score = MinMax(minMaxboard, depth + 1, false);
                     board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.empty;
                     maxScore = Mathf.Max(maxScore, score);
                 }
@@ -83,7 +83,7 @@ public class MinMaxBrain : MonoBehaviour
                 {
                     board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player1;
                     //Add Remove Check
-                    score = MinMax(minMaxboard, depth - 1, true);
+                    score = MinMax(minMaxboard, depth + 1, true);
                     board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.empty;
                     minScore = Mathf.Min(minScore, score);
                 }
@@ -92,12 +92,20 @@ public class MinMaxBrain : MonoBehaviour
         }
     }
 
-    private float Utility(Turn_Manager.Players player)
+    private float Utility()
     {
-        float scoreP = 0;
-        float scoreAi = 0;
-        float bestScore;
-        for (int j = 0; j < board.Count; j++)
+        float bestScore = 0;
+
+        for (int i = 0; i < zones.Count; i++)
+        {
+            bestScore += zones[i].GetZoneValue();
+        }
+        
+        return bestScore;
+    }
+}
+
+/*for (int j = 0; j < board.Count; j++)
         {
             if(player == Turn_Manager.Players.player1)
             {
@@ -105,11 +113,11 @@ public class MinMaxBrain : MonoBehaviour
                 {
                     if (zones[i].GetBonusMove(Zone.Actions.add) == Zone.Actions.add)
                     {
-                        scoreP += 2;
+                        scoreP -= 2;
                     }
                     else if (zones[i].GetBonusMove(Zone.Actions.remove) == Zone.Actions.remove)
                     {
-                        scoreP += 2;
+                        scoreP -= 2;
                     }
                 }
             }
@@ -127,10 +135,5 @@ public class MinMaxBrain : MonoBehaviour
                     }
                 }
             }
-        }
-
-        
-        bestScore = scoreAi - scoreP;
-        return bestScore;
     }
-}
+ */

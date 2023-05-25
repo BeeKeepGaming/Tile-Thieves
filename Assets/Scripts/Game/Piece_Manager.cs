@@ -42,7 +42,7 @@ public class Piece_Manager : MonoBehaviour
     private void Click(InputAction.CallbackContext context)
     {
         RunMove();
-        //MinMaxBrain.instance.RunMinMax();
+        MinMaxBrain.instance.RunMinMax();
     }
 
     public void RunMove(Transform aiMove = null) 
