@@ -42,7 +42,7 @@ public class Piece_Manager : MonoBehaviour
     private void Click(InputAction.CallbackContext context)
     {
         RunMove();
-        MinMaxBrain.instance.RunMinMax();
+        //MinMaxBrain.instance.RunMinMax();
     }
 
     public void RunMove(Transform aiMove = null) 
@@ -92,11 +92,11 @@ public class Piece_Manager : MonoBehaviour
             {
                 if (hit.collider != null && hit.collider.GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1 && Turn_Manager.instance.currentPlayer == Turn_Manager.Players.player2)
                 {
-                    hit.collider.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.empty);
+                    thisMove.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.empty);
                 }
                 else if (hit.collider != null && hit.collider.GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player2 && Turn_Manager.instance.currentPlayer == Turn_Manager.Players.player1)
                 {
-                    hit.collider.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.empty);
+                    thisMove.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.empty);
                 }
                 else
                 {

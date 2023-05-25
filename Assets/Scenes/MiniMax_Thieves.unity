@@ -1456,13 +1456,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayer: 0
-  playerVsAi: 0
   currentAction: 0
   turn:
   - {fileID: 830667155}
   - {fileID: 1137582495}
   endGameScene: 0
-  playingAgainstAi: 1
+  playingAgainstAI: 1
 --- !u!1 &830667153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d41477dca7a1bc499f9084a9325e7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDepth: 0
 --- !u!1 &1137582493
 GameObject:
   m_ObjectHideFlags: 0

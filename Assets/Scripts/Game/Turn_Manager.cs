@@ -21,8 +21,9 @@ public class Turn_Manager : MonoBehaviour
     public static Turn_Manager instance;
     [SerializeField] List<TMP_Text> turn;
     [SerializeField] int endGameScene;
+    [SerializeField] bool playingAgainstAI;
 
-    private void Awake()
+    private void Start()
     {
         instance = this;
         currentPlayer = (Players)Random.Range(0, 2);
@@ -35,9 +36,15 @@ public class Turn_Manager : MonoBehaviour
         {
             turn[1].text = currentAction.ToString();
             turn[0].text = " ";
-            MinMaxBrain.instance.RunMinMax();
+            if(playingAgainstAI == true)
+            {
+                MinMaxBrain.instance.RunMinMax();
+            }
+            else
+            {
+                return;
+            }
         }
-
     }
 
     public void NextTurn()
