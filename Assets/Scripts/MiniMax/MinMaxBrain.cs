@@ -13,17 +13,13 @@ public class MinMaxBrain : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-    }
-
-    private void Start()
-    {
-        board = Game_Core.instance.boardCells;
-        zones = Game_Core.instance.zones;
+        instance = this;        
     }
 
     public void RunMinMax()
     {
+        board = new List<GameObject>(Game_Core.instance.boardCells);
+        zones = new List<Zone>(Game_Core.instance.zones);
         Debug.Log("running minmax");
         float score = 0;
         Transform tempspot = null;

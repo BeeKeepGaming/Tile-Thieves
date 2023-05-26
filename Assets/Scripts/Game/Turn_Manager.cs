@@ -40,10 +40,6 @@ public class Turn_Manager : MonoBehaviour
             {
                 MinMaxBrain.instance.RunMinMax();
             }
-            else
-            {
-                return;
-            }
         }
     }
 
@@ -90,6 +86,10 @@ public class Turn_Manager : MonoBehaviour
                 {
                     turn[1].text = currentAction.ToString();
                     turn[0].text = " ";
+                    if (playingAgainstAI == true)
+                    {
+                        MinMaxBrain.instance.RunMinMax();
+                    }
                 }
                 return;
             }
@@ -101,6 +101,10 @@ public class Turn_Manager : MonoBehaviour
             currentPlayer = Players.player2;
             turn[1].text = currentAction.ToString();
             turn[0].text = " ";
+            if (playingAgainstAI == true)
+            {
+                MinMaxBrain.instance.RunMinMax();
+            }
         }
         else
         {
