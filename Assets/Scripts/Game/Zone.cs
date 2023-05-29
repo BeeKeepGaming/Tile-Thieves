@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Zone
@@ -15,6 +16,7 @@ public class Zone
     }
 
     public List<int> blocks = new List<int>();
+    private int score = 0;
     private ZoneType zoneType;
     private bool played = false;
 
@@ -71,5 +73,38 @@ public class Zone
             }        
             return Actions.remove;
         }
+    }
+
+    public void CalcZoneValue()
+    {
+        score = 0;
+        for (int i = 0; i < blocks.Count; i++)
+        {
+            if (Game_Core.instance.boardCells[blocks[i]].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.block)
+            {
+                score = 0;
+                return;
+            }
+            if (Game_Core.instance.boardCells[blocks[i]].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1)
+            {
+                score--;
+            }
+            if (Game_Core.instance.boardCells[blocks[i]].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player2)
+            {
+                score++;
+            }
+        }
+    }
+
+    public int GetScore(int index) 
+    {
+        for (int i = 0; i < blocks.Count; i++)
+        {
+            if (blocks[i]  == index)
+            {
+                return score;
+            }
+        }
+        return 0;
     }
 }
