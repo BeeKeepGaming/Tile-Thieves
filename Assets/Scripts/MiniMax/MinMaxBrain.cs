@@ -9,12 +9,24 @@ public class MinMaxBrain : MonoBehaviour
     public static MinMaxBrain instance;
 
     [SerializeField] private List<GameObject> board;
-    [SerializeField] int maxDepth;
+    public int maxDepth;
 
     private void Awake()
     {
         instance = this;
 
+        switch (Dificulty_Select.instance.difficulty)
+        {
+            case 2:
+                maxDepth = 2;
+                break;
+            case 4:
+                maxDepth = 4;
+                break;
+            case 6:
+                maxDepth = 6;
+                break;
+        }
     }
 
     public void RunMinMax()
