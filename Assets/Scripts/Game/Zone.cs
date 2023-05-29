@@ -72,21 +72,4 @@ public class Zone
             return Actions.remove;
         }
     }
-
-    public int GetZoneValue()
-    {
-        int score = 0;
-        foreach (var item in blocks)
-        {
-            if (Game_Core.instance.boardCells[item].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player2)
-            {
-                score++;
-            }
-            if(Game_Core.instance.boardCells[item].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1)
-            {
-                score--;
-            }
-        }
-        return score;
-    }
 }

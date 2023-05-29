@@ -23,7 +23,7 @@ public class Turn_Manager : MonoBehaviour
     [SerializeField] int endGameScene;
     [SerializeField] bool playingAgainstAI;
 
-    private void Awake()
+    private void Start()
     {
         instance = this;
         currentPlayer = (Players)Random.Range(0, 2);

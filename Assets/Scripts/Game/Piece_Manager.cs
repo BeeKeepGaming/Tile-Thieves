@@ -61,25 +61,21 @@ public class Piece_Manager : MonoBehaviour
         }
         else
         {
-            //hit.collider = aiMove.GetComponent<Collider>();
-            //aiMove.GetComponent<Sprite_Manager>().SwapSprite()
-            thisMove = aiMove;
+            thisMove = aiMove.GameObject().transform;
         }        
 
         if (!Menu_Manager.gameIsPaused)
         {
             if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.add)
             {
-                if (hit.collider != null && hit.collider.GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
+                if (thisMove != null && thisMove.GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
                 {
                     if (Turn_Manager.instance.currentPlayer == Turn_Manager.Players.player1)
                     {
-                        //hit.collider.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player1);
                         thisMove.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player1);
                     }
                     else
                     {
-                        //hit.collider.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player2);
                         thisMove.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.player2);
                     }
                 }
@@ -88,13 +84,13 @@ public class Piece_Manager : MonoBehaviour
                     return;
                 }
             }
-            else
+            else if(Turn_Manager.instance.currentAction == Turn_Manager.Actions.remove)
             {
-                if (hit.collider != null && hit.collider.GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1 && Turn_Manager.instance.currentPlayer == Turn_Manager.Players.player2)
+                if (thisMove != null && thisMove.GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1 && Turn_Manager.instance.currentPlayer == Turn_Manager.Players.player2)
                 {
                     thisMove.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.empty);
                 }
-                else if (hit.collider != null && hit.collider.GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player2 && Turn_Manager.instance.currentPlayer == Turn_Manager.Players.player1)
+                else if (thisMove != null && thisMove.GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player2 && Turn_Manager.instance.currentPlayer == Turn_Manager.Players.player1)
                 {
                     thisMove.GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.empty);
                 }
