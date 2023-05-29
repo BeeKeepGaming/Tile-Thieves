@@ -118,25 +118,13 @@ public class Piece_Manager : MonoBehaviour
             if (Game_Core.instance.boardCells[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1)
             {
                 player1++;
-                //SetWinningPlayer(Sprite_Manager.spriteType.player1);
             }
             else if (Game_Core.instance.boardCells[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player2)
             {
                 player2++;
-                //SetWinningPlayer(Sprite_Manager.spriteType.player2);
             }
         }
         scores[0].text = player1.ToString();
         scores[1].text = player2.ToString();
-    }
-
-    private void SetWinningPlayer(Sprite_Manager.spriteType player)
-    {
-        winningPlayer = player;
-    }
-
-    private Sprite_Manager.spriteType GetWinner()
-    {
-        return winningPlayer;
     }
 }

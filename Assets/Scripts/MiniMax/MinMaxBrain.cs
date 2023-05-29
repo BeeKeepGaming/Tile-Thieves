@@ -100,36 +100,3 @@ public class MinMaxBrain : MonoBehaviour
         return bestScore;
     }
 }
-
-/*for (int j = 0; j < board.Count; j++)
-        {
-            if(player == Turn_Manager.Players.player1)
-            {
-                for (int i = 0; i < zones.Count; i++)
-                {
-                    if (zones[i].GetBonusMove(Zone.Actions.add) == Zone.Actions.add)
-                    {
-                        scoreP -= 2;
-                    }
-                    else if (zones[i].GetBonusMove(Zone.Actions.remove) == Zone.Actions.remove)
-                    {
-                        scoreP -= 2;
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < zones.Count; i++)
-                {
-                    if (zones[i].GetBonusMove(Zone.Actions.add) == Zone.Actions.add)
-                    {
-                        scoreAi += 2;
-                    }
-                    else if (zones[i].GetBonusMove(Zone.Actions.remove) == Zone.Actions.remove)
-                    {
-                        scoreAi += 2;
-                    }
-                }
-            }
-    }
- */
