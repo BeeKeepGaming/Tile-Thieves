@@ -29,11 +29,14 @@ public class MinMaxBrain : MonoBehaviour
         {
             if (board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
             {
-                if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.add)
+                if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.remove && board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1)
                 {
                     board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
-                }                    
-                //Add Remove check
+                }
+                else if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.add)
+                {
+                    board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
+                }
                 score = MinMax(board[i],0,false);
                 board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.empty;
 
@@ -63,7 +66,11 @@ public class MinMaxBrain : MonoBehaviour
             {
                 if (board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
                 {
-                    if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.add)
+                    if(Turn_Manager.instance.currentAction == Turn_Manager.Actions.remove && board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player1)
+                    {
+                        board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
+                    }
+                    else if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.add)
                     {
                         board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
                     }
@@ -81,7 +88,11 @@ public class MinMaxBrain : MonoBehaviour
             {
                 if (board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
                 {
-                    if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.add)
+                    if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.remove && board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.player2)
+                    {
+                        board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player1;
+                    }
+                    else if (Turn_Manager.instance.currentAction == Turn_Manager.Actions.add)
                     {
                         board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player1;
                     }
