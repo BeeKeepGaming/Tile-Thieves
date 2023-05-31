@@ -54,8 +54,7 @@ public class MinMaxBrain : MonoBehaviour
         {
             if (board[i].GetComponent<Sprite_Manager>().currentSprite == Sprite_Manager.spriteType.empty)
             {                                
-                board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;
-                
+                board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.player2;                
                 score = MinMax(board[i],0,false);
                 board[i].GetComponent<Sprite_Manager>().currentSprite = Sprite_Manager.spriteType.empty;
 
