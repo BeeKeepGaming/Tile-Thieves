@@ -14,7 +14,7 @@ public class Sprite_Manager : MonoBehaviour
     private Sprite empty;
     [SerializeField] private Sprite player1;
     [SerializeField] private Sprite player2;
-    [SerializeField] private Sprite block;
+    public Sprite block;
 
     SpriteRenderer spriteRenderer;
 

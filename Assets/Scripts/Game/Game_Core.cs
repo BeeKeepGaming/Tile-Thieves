@@ -23,7 +23,6 @@ public class Game_Core : MonoBehaviour
         DrawBoard(spawnerPos);
         BlockSpawner();
         ZoneGenerator();
-        //Debug.Log(zones.Count);
     }
     private void DrawBoard(Transform startPos)
     {

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MiniMax_Thieves.unity
     guid: 2ad6cc5e33aeeb04fb9dec55c4543919
+  - enabled: 1
+    path: Assets/Scenes/Neurolink_Thieves.unity
+    guid: a06fdae5537f57f41bc4b780beaac77c
   m_configObjects: {}
