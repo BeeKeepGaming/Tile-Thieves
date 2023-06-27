@@ -43,7 +43,6 @@ public class Game_Core : MonoBehaviour
             pos.y -= yOffSet;
         }
     }
-
     private void BlockSpawner()
     {
         if (randomMap == true)
@@ -72,7 +71,6 @@ public class Game_Core : MonoBehaviour
             boardCells[28].GetComponent<Sprite_Manager>().SwapSprite(Sprite_Manager.spriteType.block);
         }        
     }
-
     private void ZoneGenerator()
     {
         Zone zone;
@@ -117,4 +115,36 @@ public class Game_Core : MonoBehaviour
             }
         }
     }
+
+    //private void CellValues()
+    //{
+    //    int cellValue;
+    //    for(int i = 0;i < boardCells.Count; i++)
+    //    {
+    //        for(int j = 0; j< zones.Count; j++)
+    //        {
+    //            switch(zones[j])
+    //            {
+    //                case :
+    //                    cellValue += 2;
+    //                    break;
+    //                case Zone.Actions.none:
+    //                    cellValue += 0;
+    //                    break;
+    //                case  Zone.Actions.remove:
+    //                    cellValue -= 1;
+    //                    break;
+    //            }
+    //            cellValue * Complete();
+    //        }
+    //    }
+    //}
+
+    //private int Complete(Zone zone)
+    //{
+    //    switch(zone)
+    //    {
+
+    //    }
+    //}
 }
