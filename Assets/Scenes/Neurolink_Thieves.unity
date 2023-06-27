@@ -3003,11 +3003,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundSprites:
-  - {fileID: 21300000, guid: 4fe83b765475b1749814e35d1f7e6682, type: 3}
-  - {fileID: 21300000, guid: bf8502345105c49429c27a0438e8047a, type: 3}
+  - {fileID: 21300000, guid: cb0ef2eb72d3d6346918dd7bed127ae2, type: 3}
+  - {fileID: 21300000, guid: cc1660167bd327b438d0826e152298c7, type: 3}
+  - {fileID: 21300000, guid: 4346358071e99e84f9df74301c9aa380, type: 3}
+  - {fileID: 21300000, guid: ced8cc3fde7307a468d048889c41a6c1, type: 3}
+  - {fileID: 21300000, guid: 396509a849c07d04f87601577c43aa07, type: 3}
   blockerSprites:
-  - {fileID: 21300000, guid: a495ec95aad1342419553850a301ba2b, type: 3}
-  - {fileID: 21300000, guid: 216d53edd10ae2c4281ae2a97776ad96, type: 3}
+  - {fileID: 21300000, guid: 50a0bf4c1eab87c4a8dc9808b96ad4f5, type: 3}
+  - {fileID: 21300000, guid: b6799f63bc9f5f449b8d05040c4e8688, type: 3}
+  - {fileID: 21300000, guid: 9ec1c302240a7774a900bae3a03eb25b, type: 3}
+  - {fileID: 21300000, guid: 4492d049a8314cc4faaa09ab1453fdc9, type: 3}
+  - {fileID: 21300000, guid: 9e457422a0f254c4ab7c73b07fc0ece9, type: 3}
   cellBGPrefab: {fileID: 2712582034051934815, guid: eec06875003b2e146ae77acfc7073813, type: 3}
   cellPPrefab: {fileID: 9052860320668114300, guid: 04a1962d1353b97488cb5c3c3ddaedb5, type: 3}
   rngSprite: 0

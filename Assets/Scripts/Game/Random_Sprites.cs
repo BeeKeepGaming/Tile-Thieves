@@ -19,7 +19,26 @@ public class Random_Sprites : MonoBehaviour
 
     private void Start()
     {
+        Camera cam = Camera.main;
         cellBGPrefab.GetComponent<SpriteRenderer>().sprite = backgroundSprites[rngSprite];
         cellPPrefab.GetComponent<Sprite_Manager>().block = blockerSprites[rngSprite];
+        //switch (rngSprite)
+        //{
+        //    case 0:
+        //        cam.backgroundColor = Color.white;
+        //        break;
+        //    case 1:
+        //        cam.backgroundColor= Color.blue;
+        //        break;
+        //    case 2:
+        //        cam.backgroundColor= Color.green;
+        //        break;
+        //    case 3:
+        //        cam.backgroundColor= Color.magenta;
+        //        break;
+        //    case 4:
+        //        cam.backgroundColor= Color.red;
+        //        break;
+        //}
     }
 }

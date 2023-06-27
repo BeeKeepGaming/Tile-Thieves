@@ -1827,9 +1827,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundSprites:
-  - {fileID: 21300000, guid: 4fe83b765475b1749814e35d1f7e6682, type: 3}
+  - {fileID: 21300000, guid: cb0ef2eb72d3d6346918dd7bed127ae2, type: 3}
   blockerSprites:
-  - {fileID: 21300000, guid: a495ec95aad1342419553850a301ba2b, type: 3}
+  - {fileID: 21300000, guid: 50a0bf4c1eab87c4a8dc9808b96ad4f5, type: 3}
   cellBGPrefab: {fileID: 2712582034051934815, guid: eec06875003b2e146ae77acfc7073813, type: 3}
   cellPPrefab: {fileID: 9052860320668114300, guid: 04a1962d1353b97488cb5c3c3ddaedb5, type: 3}
   rngSprite: 0
