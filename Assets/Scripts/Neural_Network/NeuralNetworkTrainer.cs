@@ -8,7 +8,7 @@ public class NeuralNetworkTrainer : MonoBehaviour
     private NeuralNetwork neuralNetwork;
 
     [SerializeField] int trainingSessions;
-
+    // 
     private void Start()
     {
         int inputSize = 9; // Size of the input layer

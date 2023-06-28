@@ -18,7 +18,7 @@ public class Turn_Manager : MonoBehaviour
     public static Turn_Manager instance;
     [SerializeField] List<TMP_Text> turn;
     [SerializeField] int endGameScene;
-    [SerializeField] bool playingAgainstAI;
+    [SerializeField] bool playingAgainstMiniMax, playingAgainstNeuralNetwork;
 
     private void Start()
     {
@@ -33,9 +33,13 @@ public class Turn_Manager : MonoBehaviour
         {
             turn[1].text = currentAction.ToString();
             turn[0].text = " ";
-            if (playingAgainstAI == true)
+            if (playingAgainstMiniMax == true)
             {
                 MinMaxBrain.instance.RunMinMax();
+            }
+            else if(playingAgainstNeuralNetwork == true)
+            {
+                MakeShift_AI.instance.MakeMove();
             }
         }
     }
@@ -60,7 +64,7 @@ public class Turn_Manager : MonoBehaviour
                 {
                     turn[1].text = currentAction.ToString();
                     turn[0].text = " ";
-                    if (playingAgainstAI == true)
+                    if (playingAgainstMiniMax == true)
                     {
                         MinMaxBrain.instance.RunMinMax();
                     }
@@ -87,7 +91,7 @@ public class Turn_Manager : MonoBehaviour
                 {
                     turn[1].text = currentAction.ToString();
                     turn[0].text = " ";
-                    if (playingAgainstAI == true)
+                    if (playingAgainstMiniMax == true)
                     {
                         MinMaxBrain.instance.RunMinMax();
                     }
@@ -102,7 +106,7 @@ public class Turn_Manager : MonoBehaviour
             currentPlayer = Players.player2;
             turn[1].text = currentAction.ToString();
             turn[0].text = " ";
-            if (playingAgainstAI == true)
+            if (playingAgainstMiniMax == true)
             {
                 MinMaxBrain.instance.RunMinMax();
             }

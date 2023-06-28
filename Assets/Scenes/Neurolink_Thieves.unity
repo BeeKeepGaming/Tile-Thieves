@@ -366,6 +366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 128385127}
+  - component: {fileID: 128385128}
   m_Layer: 0
   m_Name: -> Neurolink_Manager
   m_TagString: Untagged
@@ -388,6 +389,18 @@ Transform:
   m_Father: {fileID: 133931233}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &128385128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128385126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e0456a40042f24082e59c20429f41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &133931232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,7 +1505,8 @@ MonoBehaviour:
   - {fileID: 830667155}
   - {fileID: 1137582495}
   endGameScene: 0
-  playingAgainstAI: 0
+  playingAgainstMiniMax: 0
+  playingAgainstNeuralNetwork: 1
 --- !u!1 &830667153
 GameObject:
   m_ObjectHideFlags: 0
